@@ -9,7 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongo = require('mongodb')
-  , mongo_uri = process.env.MONGOLAB_URI;
+  , mongo_uri = "mongodb://dean:pass@127.0.0.1:27017/mydb";
 
 var app = express();
 
@@ -37,15 +37,20 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.post('/savesurvey', function(req, res){
-	console.log("HIT");
-	//  console.log("req obj is: ");
-	//  console.dir(req.body);
 
-/*	  var request = req.body;
+	console.log("req obj is: ");
+	
+	console.dir(req.body);
+
+	  var request = req.body;
 
 	  mongo.Db.connect(mongo_uri, function (err, db) {
-		db.collection('products', function(er, collection) {
-			collection.insert(request, {safe: true}, function(er,rs) {
+		  console.log("Connected to db");
+		  console.log(db);
+		  console.log(err);
+		db.collection('surveys', function(er, collection) {
+			console.log("Connected to surveys?");
+			collection.insert(request, function(er,rs) {
 				if (rs) {
 					res.send("Inserted Successfully");
 					console.log('Inserted into products table!' + rs);
@@ -61,7 +66,7 @@ app.post('/savesurvey', function(req, res){
 			}); //end of collection.insert
 		}); //end of db.collection 
 	  }); //end of mongo.Db.connect
-*/	
+
 	res.send("RESPONDED");
 	
 	}); //end of post /add
