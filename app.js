@@ -37,6 +37,7 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.post('/savesurvey', function(req, res){
+	console.log("HIT");
 	//  console.log("req obj is: ");
 	//  console.dir(req.body);
 
@@ -60,5 +61,7 @@ app.post('/savesurvey', function(req, res){
 			}); //end of collection.insert
 		}); //end of db.collection 
 	  }); //end of mongo.Db.connect
-*/	  
+*/	
+	res.send("RESPONDED");
+	
 	}); //end of post /add
